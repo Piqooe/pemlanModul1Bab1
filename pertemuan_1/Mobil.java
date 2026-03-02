@@ -24,7 +24,11 @@ public class Mobil {
     }
 
     public void setWaktu(double w) {
-        this.waktu = w;
+        this.waktu = rubahSekon(w);
+    }
+
+    private double rubahSekon(double jam) {
+        return jam * 3600;
     }
 
     public void displayMessage() {
@@ -32,6 +36,6 @@ public class Mobil {
         System.out.println("mempunyai nomor plat " + noPlat);
         System.out.println("serta memililki warna " + warna);
         System.out.println("dan mampu menempuh kecepatan " + kecepatan);
-        System.out.println("Waktu tempuh : " + waktu + " jam");
+        System.out.println("Waktu tempuh : " + waktu + " sekon");
     }
 }
