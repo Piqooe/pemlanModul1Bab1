@@ -4,7 +4,7 @@ public class Mobil {
     private String noPlat;
     private String warna;
     private String manufaktur;
-    private int kecepatan;
+    private double kecepatan;
     private double waktu;
 
     public void setNoPlat(String s) {
@@ -20,7 +20,11 @@ public class Mobil {
     }
 
     public void setKecepatan(int i) {
-        kecepatan = i;
+        this.kecepatan = rubahKecepatan(i);
+    }
+
+    private double rubahKecepatan(double kmh) {
+        return kmh / 3.6;
     }
 
     public void setWaktu(double w) {
@@ -35,7 +39,7 @@ public class Mobil {
         System.out.println("Mobil anda adalah bermerek " + manufaktur);
         System.out.println("mempunyai nomor plat " + noPlat);
         System.out.println("serta memililki warna " + warna);
-        System.out.println("dan mampu menempuh kecepatan " + kecepatan);
-        System.out.println("Waktu tempuh : " + waktu + " sekon");
+        System.out.println("dan mampu menempuh kecepatan " + String.format("%.2f", kecepatan) + " m/s");
+        System.out.println("Waktu tempuh : " + String.format("%.2f", waktu) + " sekon");
     }
 }
