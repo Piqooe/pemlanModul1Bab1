@@ -1,4 +1,4 @@
-package tugas_praktikum.Sorting_Searching;
+package tugas_praktikum.pemlanModulBab11;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -56,7 +56,7 @@ public class SortingSearchingApp {
         allPlayers.addAll(timB);
 
         System.out.println("========== BAGIAN 1: SORTING DAN COPY ==========");
-        
+
         System.out.println("\n--- 1.a Urut Tinggi Badan Ascending (Seluruh Pemain) ---");
         allPlayers.sort(Comparator.comparingInt(p -> p.tinggiBadan));
         printList(allPlayers);
@@ -78,17 +78,21 @@ public class SortingSearchingApp {
         Player maxTinggiA = Collections.max(timA, Comparator.comparingInt(p -> p.tinggiBadan));
         Player minBeratA = Collections.min(timA, Comparator.comparingInt(p -> p.beratBadan));
         Player maxBeratA = Collections.max(timA, Comparator.comparingInt(p -> p.beratBadan));
-        
-        System.out.println("Tim A -> Tinggi Minimal : " + minTinggiA.tinggiBadan + " cm, Maksimal : " + maxTinggiA.tinggiBadan + " cm");
-        System.out.println("Tim A -> Berat Minimal  : " + minBeratA.beratBadan + " kg, Maksimal : " + maxBeratA.beratBadan + " kg");
+
+        System.out.println("Tim A -> Tinggi Minimal : " + minTinggiA.tinggiBadan + " cm, Maksimal : "
+                + maxTinggiA.tinggiBadan + " cm");
+        System.out.println("Tim A -> Berat Minimal  : " + minBeratA.beratBadan + " kg, Maksimal : "
+                + maxBeratA.beratBadan + " kg");
 
         Player minTinggiB = Collections.min(timB, Comparator.comparingInt(p -> p.tinggiBadan));
         Player maxTinggiB = Collections.max(timB, Comparator.comparingInt(p -> p.tinggiBadan));
         Player minBeratB = Collections.min(timB, Comparator.comparingInt(p -> p.beratBadan));
         Player maxBeratB = Collections.max(timB, Comparator.comparingInt(p -> p.beratBadan));
 
-        System.out.println("Tim B -> Tinggi Minimal : " + minTinggiB.tinggiBadan + " cm, Maksimal : " + maxTinggiB.tinggiBadan + " cm");
-        System.out.println("Tim B -> Berat Minimal  : " + minBeratB.beratBadan + " kg, Maksimal : " + maxBeratB.beratBadan + " kg");
+        System.out.println("Tim B -> Tinggi Minimal : " + minTinggiB.tinggiBadan + " cm, Maksimal : "
+                + maxTinggiB.tinggiBadan + " cm");
+        System.out.println("Tim B -> Berat Minimal  : " + minBeratB.beratBadan + " kg, Maksimal : "
+                + maxBeratB.beratBadan + " kg");
 
         System.out.println("\n--- 1.d Copy seluruh anggota Tim B ke Tim C ---");
         ArrayList<Player> timC = new ArrayList<>();
@@ -99,7 +103,7 @@ public class SortingSearchingApp {
         printList(timC);
 
         System.out.println("\n========== BAGIAN 2: BINARY SEARCH ==========");
-        
+
         timB.sort(Comparator.comparingInt(p -> p.tinggiBadan));
         System.out.println("\n--- 2.b Pencarian Tinggi di Tim B ---");
         System.out.println("Jumlah pemain Tim B dengan tinggi 168 cm: " + countOccurrences(timB, 168, true));
@@ -128,14 +132,14 @@ public class SortingSearchingApp {
         int lastIdx = findLastOccurrence(list, target, isHeightSearch);
         return lastIdx - firstIdx + 1;
     }
-    
+
     private static int findFirstOccurrence(ArrayList<Player> list, int target, boolean isHeightSearch) {
         int left = 0, right = list.size() - 1;
         int result = -1;
         while (left <= right) {
             int mid = left + (right - left) / 2;
             int midVal = isHeightSearch ? list.get(mid).tinggiBadan : list.get(mid).beratBadan;
-            
+
             if (midVal == target) {
                 result = mid;
                 right = mid - 1;
@@ -147,14 +151,14 @@ public class SortingSearchingApp {
         }
         return result;
     }
-    
+
     private static int findLastOccurrence(ArrayList<Player> list, int target, boolean isHeightSearch) {
         int left = 0, right = list.size() - 1;
         int result = -1;
         while (left <= right) {
             int mid = left + (right - left) / 2;
             int midVal = isHeightSearch ? list.get(mid).tinggiBadan : list.get(mid).beratBadan;
-            
+
             if (midVal == target) {
                 result = mid;
                 left = mid + 1;
@@ -173,7 +177,8 @@ public class SortingSearchingApp {
         timB.sort(Comparator.comparingInt(p -> p.tinggiBadan));
         for (Player pA : timA) {
             if (binarySearchExists(timB, pA.tinggiBadan, true)) {
-                System.out.println("Pemain Tim A No." + pA.no + " (Tinggi: " + pA.tinggiBadan + " cm) memiliki tinggi badan yang sama dengan pemain di Tim B.");
+                System.out.println("Pemain Tim A No." + pA.no + " (Tinggi: " + pA.tinggiBadan
+                        + " cm) memiliki tinggi badan yang sama dengan pemain di Tim B.");
                 foundAny = true;
             }
         }
@@ -181,13 +186,15 @@ public class SortingSearchingApp {
         timB.sort(Comparator.comparingInt(p -> p.beratBadan));
         for (Player pA : timA) {
             if (binarySearchExists(timB, pA.beratBadan, false)) {
-                System.out.println("Pemain Tim A No." + pA.no + " (Berat: " + pA.beratBadan + " kg) memiliki berat badan yang sama dengan pemain di Tim B.");
+                System.out.println("Pemain Tim A No." + pA.no + " (Berat: " + pA.beratBadan
+                        + " kg) memiliki berat badan yang sama dengan pemain di Tim B.");
                 foundAny = true;
             }
         }
 
         if (!foundAny) {
-            System.out.println("Tidak ada pemain di Tim A yang memiliki tinggi atau berat badan yang sama dengan pemain di Tim B.");
+            System.out.println(
+                    "Tidak ada pemain di Tim A yang memiliki tinggi atau berat badan yang sama dengan pemain di Tim B.");
         }
     }
 
